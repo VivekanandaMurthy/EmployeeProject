@@ -26,7 +26,7 @@ import com.employee.repository.EmployeeRepository;
  */
 
 @Service
-public class EmployeeService {
+public class EmployeeService implements EmployeeServiceInterface {
 
 	@Autowired
 	EmployeeRepository employeeRepository;
@@ -297,7 +297,7 @@ public class EmployeeService {
 
 	}
 
-	private List<Employee> getEmployeeDetails(List<Address> address) {
+	public List<Employee> getEmployeeDetails(List<Address> address) {
 
 		List<Employee> ls = new ArrayList<Employee>();
 
