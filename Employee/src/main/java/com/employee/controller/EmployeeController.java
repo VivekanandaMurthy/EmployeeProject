@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.employee.model.Employee;
 import com.employee.model.EmployeesDTO;
 import com.employee.service.EmployeeService;
+import com.employee.service.EmployeeServiceInterface;
 
 /**
  * 
@@ -32,7 +33,7 @@ public class EmployeeController {
 	Logger lf = LoggerFactory.getLogger(EmployeeController.class);
 
 	@Autowired
-	private EmployeeService employeeService;
+	private EmployeeServiceInterface employeeService;
 
 	@RequestMapping(value = "/getemployees", method = RequestMethod.GET)
 	public List<Employee> getEmployees() {
