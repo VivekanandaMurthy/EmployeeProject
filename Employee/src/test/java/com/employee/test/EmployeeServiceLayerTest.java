@@ -94,6 +94,34 @@ public class EmployeeServiceLayerTest {
 		return elist;
 	}
 
+	private List<Address> getAddress() {
+		List<Address> listOfAddress = new ArrayList<Address>();
+		Address address1 = new Address();
+		address1.setAddressline("FirstLane");
+		address1.setCity("Hyderabad");
+		address1.setCountry("India");
+		address1.setPinCode("500072");
+		address1.setState("Telangana");
+		address1.setEmpid("1");
+
+		listOfAddress.add(address1);
+
+		Address address2 = new Address();
+		address2.setAddressline("FirstLane");
+		address2.setCity("Hyderabad");
+		address2.setCountry("India");
+		address2.setPinCode("500072");
+		address2.setState("Telangana");
+		address2.setEmpid("1");
+
+		listOfAddress.add(address2);
+		return listOfAddress;
+	}
+
+	private List<Employee> getEmployeesFromAddress(List<Address> addresses) {
+		return getEmployeesList();
+	}
+
 	@Before
 	public void init() {
 		MockitoAnnotations.initMocks(this);
@@ -154,6 +182,51 @@ public class EmployeeServiceLayerTest {
 		Employee created = employeeService.findByEmpid(employee.getEmpid());
 		assertEquals("1", created.getEmpid());
 		verify(employeeRepository).findByEmpid(employee.getEmpid());
+	}
+
+	@Test
+	public void findByState() throws Exception {
+		String state = "Telangana";
+		Mockito.when(addressRepository.findByState(state)).thenReturn(getAddress());
+		List<Address> created = addressRepository.findByState(state);
+		assertEquals(1, getEmployeesFromAddress(created).size());
+		verify(addressRepository).findByState(state);
+	}
+
+	@Test
+	public void findByCountry() throws Exception {
+		String country = "India";
+		Mockito.when(addressRepository.findByCountry(country)).thenReturn(getAddress());
+		List<Address> created = addressRepository.findByCountry(country);
+		assertEquals(1, getEmployeesFromAddress(created).size());
+		verify(addressRepository).findByCountry(country);
+	}
+
+	@Test
+	public void findByCity() throws Exception {
+		String city = "Hyderabad";
+		Mockito.when(addressRepository.findByCity(city)).thenReturn(getAddress());
+		List<Address> created = addressRepository.findByCity(city);
+		assertEquals(1, getEmployeesFromAddress(created).size());
+		verify(addressRepository).findByCity(city);
+	}
+
+	@Test
+	public void findByPinCode() throws Exception {
+		String pincode = "500072";
+		Mockito.when(addressRepository.findByPinCode(pincode)).thenReturn(getAddress());
+		List<Address> created = addressRepository.findByPinCode(pincode);
+		assertEquals(1, getEmployeesFromAddress(created).size());
+		verify(addressRepository).findByPinCode(pincode);
+	}
+
+	@Test
+	public void findByAddressLine() throws Exception {
+		String addressline = "FirstLane";
+		Mockito.when(addressRepository.findByAddressline(addressline)).thenReturn(getAddress());
+		List<Address> created = addressRepository.findByAddressline(addressline);
+		assertEquals(1, getEmployeesFromAddress(created).size());
+		verify(addressRepository).findByAddressline(addressline);
 	}
 
 }
