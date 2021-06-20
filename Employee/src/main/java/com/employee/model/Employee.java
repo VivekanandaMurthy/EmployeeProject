@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * 
@@ -31,12 +34,25 @@ public class Employee implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id")
 	public Long id;
+
 	@Column(name = "first_name", nullable = false)
+	@NotNull(message = "FirstName must not be null")
+	@Size(min = 2, max = 12, message = "FirstName size must be between 2 and 12")
+	@Pattern(regexp = "[a-zA-Z]+", message = "must not contain special characters and numbers")
 	public String firstname;
+
 	@Column(name = "empid", unique = true, nullable = false)
+	@NotNull(message = "empid must not be null")
+	@Size(min = 1, max = 12, message = "empid size must be between 1 and 12")
+	@Pattern(regexp = "[a-zA-Z0-9]+", message = "must not contain special characters")
 	public String empid;
+
 	@Column(name = "last_name")
+	@NotNull(message = "lastname must not be null")
+	@Size(min = 2, max = 12, message = "lastname size must be between 2 and 12")
+	@Pattern(regexp = "[a-zA-Z]+", message = "must not contain special characters and numbers")
 	public String lastname;
+
 	@OneToMany(targetEntity = Address.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "empid", referencedColumnName = "empid")
 	private List<Address> address;

@@ -52,6 +52,8 @@ public class EmployeeServiceLayerTest {
 	private EmployeeService employeeService;
 	@Autowired
 	private EmployeeRepository employeeRepository;
+	@Autowired
+	private AddressRepository addressRepository;
 
 	private Employee createEmployees() {
 		Employee employee = new Employee();

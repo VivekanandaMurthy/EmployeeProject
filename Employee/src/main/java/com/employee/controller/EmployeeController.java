@@ -2,6 +2,9 @@ package com.employee.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.employee.model.Employee;
 import com.employee.model.EmployeesDTO;
-import com.employee.service.EmployeeService;
 import com.employee.service.EmployeeServiceInterface;
 
 /**
@@ -46,7 +48,7 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
 	@ResponseBody
-	public String addEmployee(@RequestBody EmployeesDTO employee) {
+	public String addEmployee(@RequestBody @Valid EmployeesDTO employee) {
 
 		lf.info("Requested to add employee details");
 
@@ -67,7 +69,7 @@ public class EmployeeController {
 
 	@RequestMapping(value = "/updateEmployee", method = RequestMethod.PUT)
 	@ResponseBody
-	public String updateEmployee(@RequestBody EmployeesDTO employee) {
+	public String updateEmployee(@RequestBody @Valid EmployeesDTO employee) {
 
 		System.out.println(employee);
 
@@ -83,7 +85,7 @@ public class EmployeeController {
 
 	@DeleteMapping("/deleteEmployee/{id}")
 	@ResponseBody
-	public String deleteEmployee(@PathVariable Long id) {
+	public String deleteEmployee(@PathVariable @NotBlank Long id) {
 
 		lf.info("Requested to delete employee details with id : " + id);
 
@@ -96,7 +98,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/getemployeeByEmpId/{empid}", method = RequestMethod.GET)
-	public Employee findByEmpid(@PathVariable String empid) {
+	public Employee findByEmpid(@PathVariable @NotBlank String empid) {
 
 		lf.info("Employees details requested");
 
@@ -105,7 +107,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/getemployeesByFirstName/{firstname}", method = RequestMethod.GET)
-	public List<Employee> findByFirstname(@PathVariable String firstname) {
+	public List<Employee> findByFirstname(@PathVariable @NotBlank String firstname) {
 
 		lf.info("Employees details requested");
 
@@ -114,7 +116,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/findByLastname/{lastname}", method = RequestMethod.GET)
-	public List<Employee> findByLastname(@PathVariable String lastname) {
+	public List<Employee> findByLastname(@PathVariable @NotBlank String lastname) {
 
 		lf.info("Employees details requested");
 
@@ -123,7 +125,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/findByAddressline/{addressline}", method = RequestMethod.GET)
-	public List<Employee> findByAddressline(@PathVariable String addressline) {
+	public List<Employee> findByAddressline(@PathVariable @NotBlank String addressline) {
 
 		lf.info("Employees details requested");
 
@@ -132,7 +134,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/findByCity/{city}", method = RequestMethod.GET)
-	public List<Employee> findByCity(@PathVariable String city) {
+	public List<Employee> findByCity(@PathVariable @NotBlank String city) {
 
 		lf.info("Employees details requested");
 
@@ -141,7 +143,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/findByCountry/{country}", method = RequestMethod.GET)
-	public List<Employee> findByCountry(@PathVariable String country) {
+	public List<Employee> findByCountry(@PathVariable @NotBlank String country) {
 
 		lf.info("Employees details requested");
 
@@ -150,7 +152,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/findByPinCode/{pincode}", method = RequestMethod.GET)
-	public List<Employee> findByPinCode(@PathVariable String pincode) {
+	public List<Employee> findByPinCode(@PathVariable @NotBlank String pincode) {
 
 		lf.info("Employees details requested");
 
@@ -159,7 +161,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(value = "/findByState/{state}", method = RequestMethod.GET)
-	public List<Employee> findByState(@PathVariable String state) {
+	public List<Employee> findByState(@PathVariable @NotBlank String state) {
 
 		lf.info("Employees details requested");
 

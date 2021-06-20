@@ -30,7 +30,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories("com.employee.repository")
+@EnableJpaRepositories("com.employee")
 @PropertySource("classpath:database.properties")
 public class DataConfig {
 
@@ -50,7 +50,7 @@ public class DataConfig {
 		LocalContainerEntityManagerFactoryBean lfb = new LocalContainerEntityManagerFactoryBean();
 		lfb.setDataSource(dataSource());
 		lfb.setPersistenceProviderClass(HibernatePersistence.class);
-		lfb.setPackagesToScan("com.employee.model");
+		lfb.setPackagesToScan("com.employee");
 		lfb.setJpaProperties(hibernateProps());
 		return lfb;
 	}

@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 /**
  * 
@@ -27,16 +29,31 @@ public class Address implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long id;
+
 	@Column(name = "addressline")
+	@Pattern(regexp = "^[a-zA-Z0-9\\s,'-]*$", message = "Allows only Alphanumerics, spaces and -")
 	public String addressline;
+
 	@Column(name = "city")
+	@Size(min = 2, max = 12, message = "city size must be between 2 and 12")
+	@Pattern(regexp = "[a-zA-Z]+", message = "must not contain special characters and numbers")
 	public String city;
+
 	@Column(name = "state")
+	@Size(min = 2, max = 12, message = "state size must be between 2 and 12")
+	@Pattern(regexp = "[a-zA-Z]+", message = "must not contain special characters and numbers")
 	public String state;
+
 	@Column(name = "country")
+	@Size(min = 2, max = 12, message = "country size must be between 2 and 12")
+	@Pattern(regexp = "[a-zA-Z]+", message = "must not contain special characters and numbers")
 	public String country;
+
 	@Column(name = "pin_Code")
+	@Size(min = 6, max = 6, message = "pinCode size must be 6")
+	@Pattern(regexp = "[0-9]+", message = "must be in numbers")
 	public String pinCode;
+
 	@Column(name = "empid")
 	public String empid;
 
